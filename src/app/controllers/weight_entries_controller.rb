@@ -11,7 +11,7 @@ class WeightEntriesController < ApplicationController
   end
 
   def create
-    @weight_entry = WeightEntry.new(weight_entry_params)
+    @weight_entry = current_user.weight_entries.new(weight_entry_params) # Associate user
     if @weight_entry.save
       redirect_to weight_entries_path, notice: 'Votre suivi de poids a été ajouté avec succès.'
     else
@@ -45,6 +45,6 @@ class WeightEntriesController < ApplicationController
   end
 
   def weight_entry_params
-    params.require(:weight_entry).permit(:weight, :date)
+    params.require(:weight_entry).permit(:weight, :date, :steps)
   end
 end

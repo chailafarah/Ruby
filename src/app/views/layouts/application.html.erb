@@ -26,6 +26,10 @@
       </div>
     <% end %>
 
+       <% if user_signed_in? %>
+       <%= link_to current_user.email, edit_user_registration_path, class: "text-blue-500 font-bold hover:underline" %>
+       <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 ml-8" %>
+       <% end %>
         <main class="w-50 mx-auto mt-28 px-5">
             <%= yield %>
         </main>
