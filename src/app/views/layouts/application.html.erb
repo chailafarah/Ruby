@@ -26,12 +26,18 @@
       </div>
     <% end %>
 
-       <% if user_signed_in? %>
-       <%= link_to current_user.email, edit_user_registration_path, class: "text-blue-500 font-bold hover:underline" %>
-       <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 ml-8" %>
-       <% end %>
-        <main class="w-50 mx-auto mt-28 px-5">
-            <%= yield %>
-        </main>
+     <div class="flex justify-end">
+        <% if user_signed_in? %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-500 flex items-center gap-2 mr-8 mt-8" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-7.5A2.25 2.25 0 0 0 3.75 5.25v13.5A2.25 2.25 0 0 0 6 21h7.5a2.25 2.25 0 0 0 2.25-2.25V15m4.5-3h-12m12 0-3-3m3 3-3 3"/>
+            </svg>
+            Log out
+            <% end %>
+        <% end %>
+        </div>
+      <main class="w-50 mx-auto mt-28 px-5">
+      <%= yield %>
+     </main>
     </body>
 </html>
